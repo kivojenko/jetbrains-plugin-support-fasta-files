@@ -1,0 +1,41 @@
+<idea-plugin>
+    <id>com.kivojenko.plugin.fasta</id>
+    <name>Fasta</name>
+    <vendor email="kivojenko@gmail.com">Ksenija Kivojenko</vendor>
+    <description>
+        <![CDATA[
+        This plugin supports FASTA file syntax for BioInformatics nucleic acids (DNA and RNA) and protein sequences research.
+        ]]>
+    </description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType
+                name="FASTA File"
+                implementationClass="com.kivojenko.plugin.fasta.language.file.FastaFileType"
+                fieldName="INSTANCE"
+                language="FASTA"
+                extensions="fasta"/>
+
+        <lang.parserDefinition
+                language="FASTA"
+                implementationClass="com.kivojenko.plugin.fasta.language.parser.FastaParserDefinition"/>
+
+        <lang.syntaxHighlighterFactory
+                language="FASTA"
+                implementationClass="com.kivojenko.plugin.fasta.language.highlight.FastaSyntaxHighlighterFactory"/>
+    </extensions>
+
+    <!--    &lt;!&ndash; Actions (Optional) &ndash;&gt;-->
+    <!--    <actions>-->
+    <!--        <action id="Fasta.NewFileAction"-->
+    <!--                class="com.example.FastaNewFileAction"-->
+    <!--                text="New FASTA File"-->
+    <!--                description="Creates a new FASTA file."-->
+    <!--                icon="/icons/fasta_icon.svg">-->
+    <!--            <add-to-group group-id="FileMenu" anchor="after" relative-to-action="NewFile" />-->
+    <!--        </action>-->
+    <!--    </actions>-->
+</idea-plugin>
