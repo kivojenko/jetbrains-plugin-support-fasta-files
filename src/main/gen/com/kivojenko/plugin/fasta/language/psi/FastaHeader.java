@@ -7,8 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface FastaHeader extends PsiElement {
 
-  String getStart();
+  @NotNull
+  PsiElement getDescription();
 
-  String getDescription();
+  @NotNull
+  PsiElement getStart();
 
 }

@@ -5,7 +5,7 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 
 public class FastaHighlightingColors {
     public static final TextAttributesKey START = TextAttributesKey.createTextAttributesKey(
-            "FASTA_HEADER",
+            "FASTA_START",
             DefaultLanguageHighlighterColors.DOC_COMMENT
     );
 

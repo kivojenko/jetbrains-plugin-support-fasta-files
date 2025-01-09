@@ -16,10 +16,12 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        pycharmProfessional("2024.3")
-        bundledPlugin("Pythonid")
+        intellijIdeaCommunity("2024.3.1.1")
+        bundledPlugin("com.intellij.java")
+        pluginVerifier()
         plugin("PsiViewer:243.7768")
     }
+    implementation("org.biojava:biojava-core:7.1.3")
     compileOnly("org.projectlombok:lombok:1.18.36")
     annotationProcessor("org.projectlombok:lombok:1.18.36")
 }

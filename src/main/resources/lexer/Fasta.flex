@@ -1,8 +1,10 @@
 package com.kivojenko.plugin.fasta.lexer;
 
+import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
-import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.kivojenko.plugin.fasta.language.FastaTokenTypes.*;
+import static com.intellij.psi.TokenType.WHITE_SPACE;
+import static com.intellij.psi.TokenType.BAD_CHARACTER;
 
 %%
 
@@ -18,53 +20,67 @@ import static com.kivojenko.plugin.fasta.language.FastaTokenTypes.*;
 %function advance
 %type IElementType
 %unicode
-%state HEADER BODY
+%state HEADER_STATE BODY_STATE
 
 START = ">"
 DESCRIPTION = [^\n\r]+
 VALUE = ([A-z]+[\t\n\r])*[A-z*]+
-WHITE_SPACE = [ \t\n\r]+
+LINE_TERMINATOR = \r|\n|\r\n
+BAD_CHARACTER = .
 
 %%
 
 <YYINITIAL> {
-  {START} {
-    yybegin(HEADER);
-    return START;
-  }
-
- {WHITE_SPACE} {
+ {LINE_TERMINATOR} | [ \t\f] {
           return WHITE_SPACE;
       }
+
+  {START} {
+    yybegin(HEADER_STATE);
+    return START;
+  }
 
   . {
     return BAD_CHARACTER;
   }
 }
 
-<HEADER> {
+<HEADER_STATE> {
+    {START} {
+        return START;
+      }
+
   {DESCRIPTION} {
-      yybegin(BODY);
       return DESCRIPTION;
     }
 
- {WHITE_SPACE} {
+   {LINE_TERMINATOR} {
+          yybegin(BODY_STATE);
           return WHITE_SPACE;
       }
 
+  [ \t\f] {
+      return WHITE_SPACE;
+      }
+
+   . {
+      return BAD_CHARACTER;
+    }
+
 }
 
-<BODY> {
+<BODY_STATE> {
   {VALUE} {
         return VALUE;
       }
 
- {WHITE_SPACE} {
+ {LINE_TERMINATOR} | [ \t\f] {
+          yybegin(YYINITIAL);
           return WHITE_SPACE;
       }
 
   {START} {
-    yybegin(HEADER);
+    yybegin(HEADER_STATE);
     return START;
   }
 

@@ -28,8 +28,9 @@ public class FastaBodyImpl extends ASTWrapperPsiElement implements FastaBody {
   }
 
   @Override
-  public String getValue() {
-    return FastaPsiImplUtil.getValue(this);
+  @NotNull
+  public PsiElement getValue() {
+    return findNotNullChildByType(VALUE);
   }
 
 }

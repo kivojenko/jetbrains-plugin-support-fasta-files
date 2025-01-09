@@ -13,24 +13,17 @@
   elementTypeHolderClass="com.kivojenko.plugin.fasta.language.FastaTokenTypes"
   elementTypeClass="com.kivojenko.plugin.fasta.language.parser.FastaElementType"
   tokenTypeClass="com.kivojenko.plugin.fasta.language.parser.FastaTokenType"
+
+  tokens = [
+  START
+  DESCRIPTION
+  VALUE
+  ]
 }
 
-FASTA ::= SEQUENCE* <<eof>>
+file ::= sequence* <<eof>>
 
-SEQUENCE ::= HEADER WHITE_SPACE? BODY WHITE_SPACE? {pin=5 recoverWhile="recover_property"}
+sequence ::= header body
+header ::= START DESCRIPTION
 
-HEADER ::= START DESCRIPTION
-{
-    pin=5
-    recoverWhile="recover_property"
-    methods=[getStart getDescription]
- }
-
-BODY ::= VALUE
-{
-  pin=5
-  recoverWhile="recover_property"
-  methods=[getValue]
-}
-
-private recover_property ::= !(WHITE_SPACE)
+body ::= VALUE

@@ -32,90 +32,66 @@ public class FastaParser implements PsiParser, LightPsiParser {
   }
 
   static boolean parse_root_(IElementType t, PsiBuilder b, int l) {
-    return FASTA(b, l + 1);
+    return file(b, l + 1);
   }
 
   /* ********************************************************** */
   // VALUE
-  public static boolean BODY(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "BODY")) return false;
+  public static boolean body(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "body")) return false;
+    if (!nextTokenIs(b, VALUE)) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, BODY, "<body>");
+    Marker m = enter_section_(b);
     r = consumeToken(b, VALUE);
-    exit_section_(b, l, m, r, false, FastaParser::recover_property);
+    exit_section_(b, m, BODY, r);
     return r;
   }
 
   /* ********************************************************** */
-  // SEQUENCE* <<eof>>
-  static boolean FASTA(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "FASTA")) return false;
+  // sequence* <<eof>>
+  static boolean file(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "file")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = FASTA_0(b, l + 1);
+    r = file_0(b, l + 1);
     r = r && eof(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // SEQUENCE*
-  private static boolean FASTA_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "FASTA_0")) return false;
+  // sequence*
+  private static boolean file_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "file_0")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!SEQUENCE(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "FASTA_0", c)) break;
+      if (!sequence(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "file_0", c)) break;
     }
     return true;
   }
 
   /* ********************************************************** */
   // START DESCRIPTION
-  public static boolean HEADER(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "HEADER")) return false;
+  public static boolean header(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "header")) return false;
+    if (!nextTokenIs(b, START)) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, HEADER, "<header>");
+    Marker m = enter_section_(b);
     r = consumeTokens(b, 0, START, DESCRIPTION);
-    exit_section_(b, l, m, r, false, FastaParser::recover_property);
+    exit_section_(b, m, HEADER, r);
     return r;
   }
 
   /* ********************************************************** */
-  // HEADER WHITE_SPACE? BODY WHITE_SPACE?
-  public static boolean SEQUENCE(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "SEQUENCE")) return false;
+  // header body
+  public static boolean sequence(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "sequence")) return false;
+    if (!nextTokenIs(b, START)) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, SEQUENCE, "<sequence>");
-    r = HEADER(b, l + 1);
-    r = r && SEQUENCE_1(b, l + 1);
-    r = r && BODY(b, l + 1);
-    r = r && SEQUENCE_3(b, l + 1);
-    exit_section_(b, l, m, r, false, FastaParser::recover_property);
-    return r;
-  }
-
-  // WHITE_SPACE?
-  private static boolean SEQUENCE_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "SEQUENCE_1")) return false;
-    consumeToken(b, WHITE_SPACE);
-    return true;
-  }
-
-  // WHITE_SPACE?
-  private static boolean SEQUENCE_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "SEQUENCE_3")) return false;
-    consumeToken(b, WHITE_SPACE);
-    return true;
-  }
-
-  /* ********************************************************** */
-  // !(WHITE_SPACE)
-  static boolean recover_property(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "recover_property")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NOT_);
-    r = !consumeToken(b, WHITE_SPACE);
-    exit_section_(b, l, m, r, false, null);
+    Marker m = enter_section_(b);
+    r = header(b, l + 1);
+    r = r && body(b, l + 1);
+    exit_section_(b, m, SEQUENCE, r);
     return r;
   }
 

@@ -10,6 +10,7 @@
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType
@@ -26,6 +27,13 @@
         <lang.syntaxHighlighterFactory
                 language="FASTA"
                 implementationClass="com.kivojenko.plugin.fasta.language.highlight.FastaSyntaxHighlighterFactory"/>
+
+        <lang.foldingBuilder language="FASTA"
+                             implementationClass="com.kivojenko.plugin.fasta.language.folding.FastaFoldingBuilder"/>
+
+        <annotator
+                language="JAVA"
+                implementationClass="com.kivojenko.plugin.fasta.language.annotator.FastaAnnotator"/>
     </extensions>
 
     <!--    &lt;!&ndash; Actions (Optional) &ndash;&gt;-->

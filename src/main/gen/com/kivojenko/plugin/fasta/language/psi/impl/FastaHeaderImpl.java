@@ -28,13 +28,15 @@ public class FastaHeaderImpl extends ASTWrapperPsiElement implements FastaHeader
   }
 
   @Override
-  public String getStart() {
-    return FastaPsiImplUtil.getStart(this);
+  @NotNull
+  public PsiElement getDescription() {
+    return findNotNullChildByType(DESCRIPTION);
   }
 
   @Override
-  public String getDescription() {
-    return FastaPsiImplUtil.getDescription(this);
+  @NotNull
+  public PsiElement getStart() {
+    return findNotNullChildByType(START);
   }
 
 }

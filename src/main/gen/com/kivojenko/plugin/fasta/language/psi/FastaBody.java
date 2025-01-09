@@ -7,6 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface FastaBody extends PsiElement {
 
-  String getValue();
+  @NotNull
+  PsiElement getValue();
 
 }

@@ -17,7 +17,6 @@ public interface FastaTokenTypes {
   IElementType DESCRIPTION = new FastaTokenType("DESCRIPTION");
   IElementType START = new FastaTokenType("START");
   IElementType VALUE = new FastaTokenType("VALUE");
-  IElementType WHITE_SPACE = new FastaTokenType("WHITE_SPACE");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
