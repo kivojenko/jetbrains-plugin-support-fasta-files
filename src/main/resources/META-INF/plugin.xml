@@ -35,6 +35,8 @@
                 language="FASTA"
                 implementationClass="com.kivojenko.plugin.fasta.language.structure.FastaStructureViewFactory"/>
 
+        <navbar implementation="com.kivojenko.plugin.fasta.language.structure.FastaStructureAwareNavbar"/>
+
         <annotator
                 language="JAVA"
                 implementationClass="com.kivojenko.plugin.fasta.language.annotator.FastaAnnotator"/>
