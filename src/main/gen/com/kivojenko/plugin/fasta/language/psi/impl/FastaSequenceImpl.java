@@ -10,6 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.kivojenko.plugin.fasta.language.FastaTokenTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.kivojenko.plugin.fasta.language.psi.*;
+import com.intellij.navigation.ItemPresentation;
 
 public class FastaSequenceImpl extends ASTWrapperPsiElement implements FastaSequence {
 
@@ -37,6 +38,11 @@ public class FastaSequenceImpl extends ASTWrapperPsiElement implements FastaSequ
   @NotNull
   public FastaHeader getHeader() {
     return findNotNullChildByClass(FastaHeader.class);
+  }
+
+  @Override
+  public ItemPresentation getPresentation() {
+    return FastaPsiImplUtil.getPresentation(this);
   }
 
 }

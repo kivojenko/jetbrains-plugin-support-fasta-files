@@ -23,7 +23,7 @@
 
 file ::= sequence* <<eof>>
 
-sequence ::= header body
+sequence ::= header body {methods=[getPresentation]}
 header ::= START DESCRIPTION
 
 body ::= VALUE

@@ -31,6 +31,10 @@
         <lang.foldingBuilder language="FASTA"
                              implementationClass="com.kivojenko.plugin.fasta.language.folding.FastaFoldingBuilder"/>
 
+        <lang.psiStructureViewFactory
+                language="FASTA"
+                implementationClass="com.kivojenko.plugin.fasta.language.structure.FastaStructureViewFactory"/>
+
         <annotator
                 language="JAVA"
                 implementationClass="com.kivojenko.plugin.fasta.language.annotator.FastaAnnotator"/>
