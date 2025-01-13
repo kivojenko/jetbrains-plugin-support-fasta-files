@@ -126,7 +126,7 @@ public class _FastaLexer implements FlexLexer {
 
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\11\0\22\0\33\0\33\0\44\0\33\0\55"+
-    "\0\33\0\66\0\55\0\33\0\77\0\110\0\121\0\132";
+    "\0\33\0\66\0\55\0\33\0\77\0\110\0\121\0\121";
 
   private static int [] zzUnpackRowMap() {
     int [] result = new int[16];
@@ -157,11 +157,10 @@ public class _FastaLexer implements FlexLexer {
     "\2\14\1\0\1\14\1\15\1\16\1\7\1\17\13\0"+
     "\1\5\6\0\2\10\1\0\2\10\1\0\3\10\2\0"+
     "\1\11\10\0\1\14\14\0\1\16\1\0\1\16\1\0"+
-    "\2\20\2\0\1\20\1\16\1\0\1\17\6\0\1\16"+
-    "\1\0\1\17";
+    "\2\20\2\0\1\20\1\16\1\0\1\17";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[99];
+    int [] result = new int[90];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;

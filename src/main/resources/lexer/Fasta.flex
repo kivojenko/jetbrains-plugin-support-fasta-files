@@ -24,7 +24,7 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 
 START = ">"
 DESCRIPTION = [^\n\r]+
-VALUE = ([A-z]+[\t\n\r])*[A-z*]+
+VALUE = ([A-z]+[\t\n\r]*)*[A-z*]+
 LINE_TERMINATOR = \r|\n|\r\n
 BAD_CHARACTER = .
 

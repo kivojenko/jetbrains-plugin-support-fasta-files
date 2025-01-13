@@ -19,9 +19,7 @@ final class FastaAnnotator implements Annotator, DumbAware {
 
     @Override
     public void annotate(@NotNull final PsiElement element, @NotNull AnnotationHolder holder) {
-        System.out.println("annotate");
         if (!(element instanceof PsiLiteralExpression literalExpression)) {
-            System.out.println(element.getText());
             return;
         }
 

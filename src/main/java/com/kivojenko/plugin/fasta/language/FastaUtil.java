@@ -19,7 +19,6 @@ public class FastaUtil {
     public static final String FILE_EXTENSION = ".fasta";
     public static final String HEADER_START = ">";
 
-
     public static List<FastaSequence> findSequences(Project project, String name) {
 
         List<FastaSequence> result = new ArrayList<>();

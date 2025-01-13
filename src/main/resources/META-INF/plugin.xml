@@ -35,6 +35,11 @@
                 language="FASTA"
                 implementationClass="com.kivojenko.plugin.fasta.language.structure.FastaStructureViewFactory"/>
 
+        <lang.formatter
+                language="FASTA"
+                implementationClass="com.kivojenko.plugin.fasta.language.formatter.FastaFormattingModelBuilder"/>
+        <postFormatProcessor implementation="com.kivojenko.plugin.fasta.language.formatter.FastaPostFormatProcessor"/>
+
         <navbar implementation="com.kivojenko.plugin.fasta.language.structure.FastaStructureAwareNavbar"/>
 
         <annotator

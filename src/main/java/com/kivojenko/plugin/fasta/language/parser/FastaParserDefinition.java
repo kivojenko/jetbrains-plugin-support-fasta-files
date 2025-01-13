@@ -17,7 +17,6 @@ import com.kivojenko.plugin.fasta.language.file.FastaFile;
 import org.jetbrains.annotations.NotNull;
 
 final class FastaParserDefinition implements ParserDefinition {
-
     public static final IFileElementType FILE = new IFileElementType(FastaLanguage.INSTANCE);
 
     @NotNull
