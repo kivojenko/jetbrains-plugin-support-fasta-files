@@ -34,7 +34,7 @@ final class FastaParserDefinition implements ParserDefinition {
     @NotNull
     @Override
     public TokenSet getStringLiteralElements() {
-        return TokenSet.create(FastaTokenTypes.DESCRIPTION, FastaTokenTypes.VALUE);
+        return TokenSet.create(FastaTokenTypes.DESCRIPTION, FastaTokenTypes.DNA, FastaTokenTypes.RNA, FastaTokenTypes.PROTEIN);
     }
 
     @NotNull

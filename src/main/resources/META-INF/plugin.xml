@@ -28,8 +28,10 @@
                 language="FASTA"
                 implementationClass="com.kivojenko.plugin.fasta.language.highlight.FastaSyntaxHighlighterFactory"/>
 
-        <lang.foldingBuilder language="FASTA"
-                             implementationClass="com.kivojenko.plugin.fasta.language.folding.FastaFoldingBuilder"/>
+        <lang.foldingBuilder
+                language="FASTA"
+
+                implementationClass="com.kivojenko.plugin.fasta.language.folding.FastaFoldingBuilder"/>
 
         <lang.psiStructureViewFactory
                 language="FASTA"
@@ -38,7 +40,16 @@
         <lang.formatter
                 language="FASTA"
                 implementationClass="com.kivojenko.plugin.fasta.language.formatter.FastaFormattingModelBuilder"/>
-        <postFormatProcessor implementation="com.kivojenko.plugin.fasta.language.formatter.FastaPostFormatProcessor"/>
+
+
+        <postFormatProcessor
+                implementation="com.kivojenko.plugin.fasta.language.formatter.FastaPostFormatProcessor"/>
+
+        <codeStyleSettingsProvider
+                implementation="com.kivojenko.plugin.fasta.language.formatter.settings.FastaCodeStyleSettingsProvider"/>
+
+        <langCodeStyleSettingsProvider
+                implementation="com.kivojenko.plugin.fasta.language.formatter.settings.FastaLanguageStyleSettingsProvider"/>
 
         <navbar implementation="com.kivojenko.plugin.fasta.language.structure.FastaStructureAwareNavbar"/>
 
@@ -46,15 +57,4 @@
                 language="JAVA"
                 implementationClass="com.kivojenko.plugin.fasta.language.annotator.FastaAnnotator"/>
     </extensions>
-
-    <!--    &lt;!&ndash; Actions (Optional) &ndash;&gt;-->
-    <!--    <actions>-->
-    <!--        <action id="Fasta.NewFileAction"-->
-    <!--                class="com.example.FastaNewFileAction"-->
-    <!--                text="New FASTA File"-->
-    <!--                description="Creates a new FASTA file."-->
-    <!--                icon="/icons/fasta_icon.svg">-->
-    <!--            <add-to-group group-id="FileMenu" anchor="after" relative-to-action="NewFile" />-->
-    <!--        </action>-->
-    <!--    </actions>-->
 </idea-plugin>

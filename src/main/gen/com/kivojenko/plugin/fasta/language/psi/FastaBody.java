@@ -7,7 +7,15 @@ import com.intellij.psi.PsiElement;
 
 public interface FastaBody extends PsiElement {
 
-  @NotNull
+  @Nullable
+  PsiElement getDna();
+
+  @Nullable
+  PsiElement getProtein();
+
+  @Nullable
+  PsiElement getRna();
+
   PsiElement getValue();
 
 }

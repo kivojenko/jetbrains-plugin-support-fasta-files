@@ -18,8 +18,12 @@ public class FastaSyntaxHighlighter extends SyntaxHighlighterBase {
     public TextAttributesKey @NotNull [] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(FastaTokenTypes.DESCRIPTION)) {
             return new TextAttributesKey[]{FastaHighlightingColors.DESCRIPTION};
-        } else if (tokenType.equals(FastaTokenTypes.VALUE)) {
-            return new TextAttributesKey[]{FastaHighlightingColors.VALUE};
+        } else if (tokenType.equals(FastaTokenTypes.PROTEIN)) {
+            return new TextAttributesKey[]{FastaHighlightingColors.PROTEIN};
+        } else if (tokenType.equals(FastaTokenTypes.DNA)) {
+            return new TextAttributesKey[]{FastaHighlightingColors.DNA};
+        } else if (tokenType.equals(FastaTokenTypes.RNA)) {
+            return new TextAttributesKey[]{FastaHighlightingColors.RNA};
         } else if (tokenType.equals(FastaTokenTypes.START)) {
             return new TextAttributesKey[]{FastaHighlightingColors.START};
         }

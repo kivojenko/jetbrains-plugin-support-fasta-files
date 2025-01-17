@@ -15,8 +15,10 @@ public interface FastaTokenTypes {
   IElementType SEQUENCE = new FastaElementType("SEQUENCE");
 
   IElementType DESCRIPTION = new FastaTokenType("DESCRIPTION");
+  IElementType DNA = new FastaTokenType("DNA");
+  IElementType PROTEIN = new FastaTokenType("PROTEIN");
+  IElementType RNA = new FastaTokenType("RNA");
   IElementType START = new FastaTokenType("START");
-  IElementType VALUE = new FastaTokenType("VALUE");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {

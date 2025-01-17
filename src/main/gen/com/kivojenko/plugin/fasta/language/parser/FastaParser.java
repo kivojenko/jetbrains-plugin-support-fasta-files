@@ -36,14 +36,15 @@ public class FastaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // VALUE
+  // PROTEIN | RNA | DNA
   public static boolean body(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "body")) return false;
-    if (!nextTokenIs(b, VALUE)) return false;
     boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, VALUE);
-    exit_section_(b, m, BODY, r);
+    Marker m = enter_section_(b, l, _NONE_, BODY, "<body>");
+    r = consumeToken(b, PROTEIN);
+    if (!r) r = consumeToken(b, RNA);
+    if (!r) r = consumeToken(b, DNA);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 

@@ -28,9 +28,26 @@ public class FastaBodyImpl extends ASTWrapperPsiElement implements FastaBody {
   }
 
   @Override
-  @NotNull
+  @Nullable
+  public PsiElement getDna() {
+    return findChildByType(DNA);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getProtein() {
+    return findChildByType(PROTEIN);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getRna() {
+    return findChildByType(RNA);
+  }
+
+  @Override
   public PsiElement getValue() {
-    return findNotNullChildByType(VALUE);
+    return FastaPsiImplUtil.getValue(this);
   }
 
 }

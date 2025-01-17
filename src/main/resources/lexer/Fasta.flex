@@ -24,7 +24,12 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 
 START = ">"
 DESCRIPTION = [^\n\r]+
-VALUE = ([A-z]+[\t\n\r]*)*[A-z*]+
+DNA_CHARS = [ATGC]
+RNA_CHARS = [AUGC]
+PROTEIN_CHARS = [ACDEFGHIKLMNPQRSTVWYBXZ]
+DNA = ({DNA_CHARS}+[\t\n\r]*)*({DNA_CHARS}|[*-])+
+RNA = ({RNA_CHARS}+[\t\n\r]*)*({RNA_CHARS}|[*-])+
+PROTEIN = ({PROTEIN_CHARS}+[\t\n\r]*)*({PROTEIN_CHARS}|[*-])+
 LINE_TERMINATOR = \r|\n|\r\n
 BAD_CHARACTER = .
 
@@ -70,9 +75,17 @@ BAD_CHARACTER = .
 }
 
 <BODY_STATE> {
-  {VALUE} {
-        return VALUE;
+  {RNA} {
+          return RNA;
       }
+
+  {DNA} {
+          return DNA;
+      }
+
+    {PROTEIN} {
+          return PROTEIN;
+        }
 
  {LINE_TERMINATOR} | [ \t\f] {
           yybegin(YYINITIAL);

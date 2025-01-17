@@ -17,7 +17,9 @@
   tokens = [
   START
   DESCRIPTION
-  VALUE
+  PROTEIN
+  DNA
+  RNA
   ]
 }
 
@@ -26,4 +28,4 @@ file ::= sequence* <<eof>>
 sequence ::= header body {methods=[getPresentation]}
 header ::= START DESCRIPTION
 
-body ::= VALUE
+body ::= PROTEIN | RNA | DNA {methods=[getValue]}

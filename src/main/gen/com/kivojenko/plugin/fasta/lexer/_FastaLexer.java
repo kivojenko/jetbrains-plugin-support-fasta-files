@@ -68,8 +68,10 @@ public class _FastaLexer implements FlexLexer {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\1\1\1\2\1\3\1\4\1\5\22\0\1\4"+
-    "\11\0\1\6\23\0\1\7\2\0\72\10\12\0\1\3"+
-    "\u01a2\0\2\3\326\0\u0100\3";
+    "\11\0\1\6\2\0\1\6\20\0\1\7\2\0\1\10"+
+    "\1\11\1\10\3\11\1\10\2\11\1\0\4\11\1\0"+
+    "\4\11\1\12\1\13\5\11\52\0\1\3\u01a2\0\2\3"+
+    "\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -97,10 +99,10 @@ public class _FastaLexer implements FlexLexer {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\3\0\1\1\2\2\1\3\1\4\2\5\1\6\2\7"+
-    "\2\10\1\0";
+    "\2\10\1\11\1\12\1\10\1\11\1\12\1\10\4\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[16];
+    int [] result = new int[25];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -125,11 +127,13 @@ public class _FastaLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\11\0\22\0\33\0\33\0\44\0\33\0\55"+
-    "\0\33\0\66\0\55\0\33\0\77\0\110\0\121\0\121";
+    "\0\0\0\14\0\30\0\44\0\44\0\60\0\44\0\74"+
+    "\0\44\0\110\0\74\0\44\0\124\0\140\0\154\0\170"+
+    "\0\204\0\220\0\234\0\250\0\264\0\154\0\170\0\204"+
+    "\0\220";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[16];
+    int [] result = new int[25];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -152,15 +156,21 @@ public class _FastaLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\4\2\5\1\0\1\5\1\6\1\4\1\7\1\4"+
-    "\2\10\1\11\2\10\1\12\1\10\1\13\1\10\1\4"+
-    "\2\14\1\0\1\14\1\15\1\16\1\7\1\17\13\0"+
-    "\1\5\6\0\2\10\1\0\2\10\1\0\3\10\2\0"+
-    "\1\11\10\0\1\14\14\0\1\16\1\0\1\16\1\0"+
-    "\2\20\2\0\1\20\1\16\1\0\1\17";
+    "\1\4\2\5\1\0\1\5\1\6\1\4\1\7\4\4"+
+    "\2\10\1\11\2\10\1\12\1\10\1\13\4\10\1\4"+
+    "\2\14\1\0\1\14\1\15\1\16\1\7\1\17\1\20"+
+    "\1\21\1\22\16\0\1\5\11\0\2\10\1\0\2\10"+
+    "\1\0\6\10\2\0\1\11\13\0\1\14\17\0\1\16"+
+    "\1\0\1\16\1\23\1\24\1\25\1\0\2\26\2\0"+
+    "\1\26\1\16\1\0\1\17\1\20\1\21\1\22\1\0"+
+    "\2\27\2\0\1\27\1\23\1\0\3\20\2\0\2\30"+
+    "\2\0\1\30\1\24\1\0\1\21\1\20\1\21\2\0"+
+    "\2\31\2\0\1\31\1\25\1\0\1\22\2\0\1\22"+
+    "\6\0\1\23\1\0\3\23\7\0\1\24\1\0\1\24"+
+    "\1\23\1\24\7\0\1\25\1\0\1\25\2\0\1\25";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[90];
+    int [] result = new int[192];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -199,10 +209,10 @@ public class _FastaLexer implements FlexLexer {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\3\0\2\11\1\1\1\11\1\1\1\11\2\1\1\11"+
-    "\3\1\1\0";
+    "\11\1\4\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[16];
+    int [] result = new int[25];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -520,45 +530,55 @@ public class _FastaLexer implements FlexLexer {
             { return BAD_CHARACTER;
             }
           // fall through
-          case 9: break;
+          case 11: break;
           case 2:
             { return WHITE_SPACE;
             }
           // fall through
-          case 10: break;
+          case 12: break;
           case 3:
             { yybegin(HEADER_STATE);
     return START;
             }
           // fall through
-          case 11: break;
+          case 13: break;
           case 4:
             { return DESCRIPTION;
             }
           // fall through
-          case 12: break;
+          case 14: break;
           case 5:
             { yybegin(BODY_STATE);
           return WHITE_SPACE;
             }
           // fall through
-          case 13: break;
+          case 15: break;
           case 6:
             { return START;
             }
           // fall through
-          case 14: break;
+          case 16: break;
           case 7:
             { yybegin(YYINITIAL);
           return WHITE_SPACE;
             }
           // fall through
-          case 15: break;
+          case 17: break;
           case 8:
-            { return VALUE;
+            { return RNA;
             }
           // fall through
-          case 16: break;
+          case 18: break;
+          case 9:
+            { return PROTEIN;
+            }
+          // fall through
+          case 19: break;
+          case 10:
+            { return DNA;
+            }
+          // fall through
+          case 20: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }
