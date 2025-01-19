@@ -48,6 +48,8 @@
         <codeStyleSettingsProvider
                 implementation="com.kivojenko.plugin.fasta.language.formatter.settings.FastaCodeStyleSettingsProvider"/>
 
+        <colorSettingsPage implementation="com.kivojenko.plugin.fasta.language.highlight.setting.FastaColorSettingsPage"/>
+
         <langCodeStyleSettingsProvider
                 implementation="com.kivojenko.plugin.fasta.language.formatter.settings.FastaLanguageStyleSettingsProvider"/>
 

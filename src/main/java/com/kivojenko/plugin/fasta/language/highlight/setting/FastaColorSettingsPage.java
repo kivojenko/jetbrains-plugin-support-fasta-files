@@ -17,9 +17,9 @@ import java.util.Map;
 final class FastaColorSettingsPage implements ColorSettingsPage {
 
   private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-      new AttributesDescriptor("Protein", FastaHighlightingColors.PROTEIN),
-      new AttributesDescriptor("DNA", FastaHighlightingColors.DNA),
-      new AttributesDescriptor("RNA", FastaHighlightingColors.RNA)
+      new AttributesDescriptor("Protein", FastaHighlightingColors.getProteinHighlightingKey()),
+      new AttributesDescriptor("DNA", FastaHighlightingColors.getDNAHighlightingKey()),
+      new AttributesDescriptor("RNA", FastaHighlightingColors.getRNAHighlightingKey())
   };
 
   @Override
@@ -37,18 +37,13 @@ final class FastaColorSettingsPage implements ColorSettingsPage {
   @Override
   public String getDemoText() {
     return """
-        # You are reading the ".properties" entry.
-        ! The exclamation mark can also mark text as comments.
-        website = https://en.wikipedia.org/
-        language = English
-        # The backslash below tells the application to continue reading
-        # the value onto the next line.
-        message = Welcome to \\
-                  Wikipedia!
-        # Add spaces to the key
-        key\\ with\\ spaces = This is the value that could be looked up with the key "key with spaces".
-        # Unicode
-        tab : \\u0009""";
+>DNA_Sequence
+ATGCNNNNNNNNNNNNNNNNGCTAGCAGTNNNNNNNAGCTAGNNNNNNNNNNNNNNNAGCTAGNNNNNNN
+>RNA_Sequence
+AUGCNNNNNNNNNNNNNNNNGCUAGCAGUNNNNNNNAGCUAGNNNNNNNNNNNNNNNAGCUAGNNNNNNN
+>Protein_Sequence
+MFRWSKQNXXXXXXXXXXXXXXXXXXXXXLVAAKDDSSQRPQFGLNXXXX
+            """;
   }
 
   @Nullable

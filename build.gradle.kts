@@ -3,8 +3,8 @@ plugins {
     id("org.jetbrains.intellij.platform") version "2.2.0"
 }
 
-group = "com.kivojenko.plugin.display"
-version = "1.0-SNAPSHOT"
+group = "com.kivojenko.plugin.fasta"
+version = "1.0.0"
 sourceSets["main"].java.srcDirs("src/main/gen")
 
 repositories {

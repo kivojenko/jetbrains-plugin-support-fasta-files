@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class FastaSyntaxHighlighter extends SyntaxHighlighterBase {
     @Override
     public @NotNull Lexer getHighlightingLexer() {
-        return new FastaLexer(); // Custom lexer for FASTA
+        return new FastaLexer();
     }
 
     @Override
@@ -19,11 +19,11 @@ public class FastaSyntaxHighlighter extends SyntaxHighlighterBase {
         if (tokenType.equals(FastaTokenTypes.DESCRIPTION)) {
             return new TextAttributesKey[]{FastaHighlightingColors.DESCRIPTION};
         } else if (tokenType.equals(FastaTokenTypes.PROTEIN)) {
-            return new TextAttributesKey[]{FastaHighlightingColors.PROTEIN};
+            return new TextAttributesKey[]{FastaHighlightingColors.getProteinHighlightingKey()};
         } else if (tokenType.equals(FastaTokenTypes.DNA)) {
-            return new TextAttributesKey[]{FastaHighlightingColors.DNA};
+            return new TextAttributesKey[]{FastaHighlightingColors.getDNAHighlightingKey()};
         } else if (tokenType.equals(FastaTokenTypes.RNA)) {
-            return new TextAttributesKey[]{FastaHighlightingColors.RNA};
+            return new TextAttributesKey[]{FastaHighlightingColors.getRNAHighlightingKey()};
         } else if (tokenType.equals(FastaTokenTypes.START)) {
             return new TextAttributesKey[]{FastaHighlightingColors.START};
         }

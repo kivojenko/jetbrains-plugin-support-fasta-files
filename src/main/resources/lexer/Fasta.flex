@@ -24,8 +24,8 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 
 START = ">"
 DESCRIPTION = [^\n\r]+
-DNA_CHARS = [ATGC]
-RNA_CHARS = [AUGC]
+DNA_CHARS = [ATGCN]
+RNA_CHARS = [AUGCN]
 PROTEIN_CHARS = [ACDEFGHIKLMNPQRSTVWYBXZ]
 DNA = ({DNA_CHARS}+[\t\n\r]*)*({DNA_CHARS}|[*-])+
 RNA = ({RNA_CHARS}+[\t\n\r]*)*({RNA_CHARS}|[*-])+

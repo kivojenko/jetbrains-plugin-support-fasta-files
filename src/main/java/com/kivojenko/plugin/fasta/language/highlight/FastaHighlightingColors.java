@@ -23,32 +23,35 @@ public class FastaHighlightingColors {
             DefaultLanguageHighlighterColors.DOC_COMMENT_TAG_VALUE
     );
 
-    public static final TextAttributesKey PROTEIN = TextAttributesKey.createTextAttributesKey(
-            "FASTA_PROTEIN",
-            isDarkTheme()
-                    ? TextAttributesKey.createTextAttributesKey("FASTA_RNA_DARK", new TextAttributes(null, Color.decode("#75613d"), null, null, Font.PLAIN))
-                    : TextAttributesKey.createTextAttributesKey("FASTA_RNA_LIGHT", new TextAttributes(null, Color.decode("#fffcf7"), null, null, Font.PLAIN))
+    public static TextAttributesKey getProteinHighlightingKey() {
+        return TextAttributesKey.createTextAttributesKey(
+                "FASTA_PROTEIN",
+                isDarkTheme()
+                        ? TextAttributesKey.createTextAttributesKey("FASTA_PROTEIN_DARK", new TextAttributes(null, Color.decode("#403727"), null, null, Font.PLAIN))
+                        : TextAttributesKey.createTextAttributesKey("FASTA_PROTEIN_LIGHT", new TextAttributes(null, Color.decode("#fffcf7"), null, null, Font.PLAIN))
 
-    );
+        );
+    }
 
-    public static final TextAttributesKey DNA = TextAttributesKey.createTextAttributesKey(
-            "FASTA_DNA",
-            isDarkTheme()
-                    ? TextAttributesKey.createTextAttributesKey("FASTA_RNA_DARK", new TextAttributes(null, Color.decode("#6e557d"), null, null, Font.PLAIN))
-                    : TextAttributesKey.createTextAttributesKey("FASTA_RNA_LIGHT", new TextAttributes(null, Color.decode("#faf2ff"), null, null, Font.PLAIN))
+    public static TextAttributesKey getDNAHighlightingKey() {
+        return TextAttributesKey.createTextAttributesKey(
+                "FASTA_DNA",
+                isDarkTheme()
+                        ? TextAttributesKey.createTextAttributesKey("FASTA_DNA_DARK", new TextAttributes(null, Color.decode("#43374a"), null, null, Font.PLAIN))
+                        : TextAttributesKey.createTextAttributesKey("FASTA_DNA_LIGHT", new TextAttributes(null, Color.decode("#faf2ff"), null, null, Font.PLAIN))
 
-    );
+        );
+    }
 
-    public static final TextAttributesKey RNA = TextAttributesKey.createTextAttributesKey(
-            "FASTA_RNA",
-            isDarkTheme()
-                    ? TextAttributesKey.createTextAttributesKey("FASTA_RNA_DARK", new TextAttributes(null, Color.decode("#416148"), null, null, Font.PLAIN))
-                    : TextAttributesKey.createTextAttributesKey("FASTA_RNA_LIGHT", new TextAttributes(null, Color.decode("#f5fff7"), null, null, Font.PLAIN))
+    public static TextAttributesKey getRNAHighlightingKey() {
+        return TextAttributesKey.createTextAttributesKey(
+                "FASTA_RNA",
+                isDarkTheme()
+                        ? TextAttributesKey.createTextAttributesKey("FASTA_RNA_DARK", new TextAttributes(null, Color.decode("#253328"), null, null, Font.PLAIN))
+                        : TextAttributesKey.createTextAttributesKey("FASTA_RNA_LIGHT", new TextAttributes(null, Color.decode("#f5fff7"), null, null, Font.PLAIN))
 
-    );
+        );
+    }
 
-    public static final TextAttributesKey INVALID_SEQUENCE = TextAttributesKey.createTextAttributesKey(
-            "FASTA_INVALID_SEQUENCE",
-            DefaultLanguageHighlighterColors.INVALID_STRING_ESCAPE
-    );
+
 }
