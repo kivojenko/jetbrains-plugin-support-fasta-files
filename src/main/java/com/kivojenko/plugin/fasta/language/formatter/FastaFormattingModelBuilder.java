@@ -4,13 +4,17 @@ import com.intellij.formatting.*;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.kivojenko.plugin.fasta.language.FastaLanguage;
 import com.kivojenko.plugin.fasta.language.FastaTokenTypes;
+import com.kivojenko.plugin.fasta.language.formatter.settings.FastaCodeStyleSettings;
 import org.jetbrains.annotations.NotNull;
 
 final class FastaFormattingModelBuilder implements FormattingModelBuilder {
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
+        var customSettings = settings.getCustomSettings(FastaCodeStyleSettings.class);
         return new SpacingBuilder(settings, FastaLanguage.INSTANCE)
                 .after(FastaTokenTypes.SEQUENCE)
-                .blankLines(settings.getCommonSettings(FastaLanguage.INSTANCE.getID()).BLANK_LINES_AFTER_PACKAGE);
+                .blankLines(customSettings.BLANK_LINE_BETWEEN_SEQUENCES ? 1 : 0)
+                .after(FastaTokenTypes.START)
+                .spaceIf(customSettings.SPACE_AFTER_START);
     }
 
     @Override

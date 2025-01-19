@@ -1,13 +1,11 @@
 package com.kivojenko.plugin.fasta.language.formatter.settings;
 
+import com.intellij.application.options.CodeStyleAbstractConfigurable;
+import com.intellij.application.options.CodeStyleAbstractPanel;
 import com.intellij.lang.Language;
-import com.intellij.psi.codeStyle.CodeStyleSettingsCustomizable;
-import com.intellij.psi.codeStyle.CommonCodeStyleSettings;
-import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider;
+import com.intellij.psi.codeStyle.*;
 import com.kivojenko.plugin.fasta.language.FastaLanguage;
 import org.jetbrains.annotations.NotNull;
-
-import static com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider.SettingsType.*;
 
 final class FastaLanguageStyleSettingsProvider extends LanguageCodeStyleSettingsProvider {
 
@@ -21,6 +19,7 @@ final class FastaLanguageStyleSettingsProvider extends LanguageCodeStyleSettings
     @Override
     protected void customizeDefaults(@NotNull CommonCodeStyleSettings commonSettings, @NotNull CommonCodeStyleSettings.IndentOptions indentOptions) {
         try {
+            commonSettings.RIGHT_MARGIN = 80;
             commonSettings.WRAP_ON_TYPING = CommonCodeStyleSettings.WrapOnTyping.NO_WRAP.intValue;
         } catch (NoSuchFieldError ignored) {
         }
@@ -29,14 +28,9 @@ final class FastaLanguageStyleSettingsProvider extends LanguageCodeStyleSettings
 
     @Override
     public void customizeSettings(@NotNull CodeStyleSettingsCustomizable consumer, @NotNull SettingsType settingsType) {
-        if (settingsType == BLANK_LINES_SETTINGS) {
-            consumer.showStandardOptions("BLANK_LINES_AROUND_CLASS");
-            consumer.showCustomOption(FastaCodeStyleSettings.class, "SPACE_AFTER_START", "Space after '>'", "Fasta");
-            consumer.showCustomOption(FastaCodeStyleSettings.class, "BLANK_LINES_BETWEEN_SEQUENCES", "Lines between sequences", "Fasta");
-        }
-        if (settingsType == SPACING_SETTINGS) {
-            consumer.showStandardOptions("SPACE_BEFORE_METHOD_CALL_PARENTHESES");
-        }
+        consumer.showCustomOption(FastaCodeStyleSettings.class, "SPACE_AFTER_START", "Space after '>'", null);
+        consumer.showCustomOption(FastaCodeStyleSettings.class, "BLANK_LINE_BETWEEN_SEQUENCES", "Blank line between sequences", null);
+
     }
 
     @Override
@@ -59,4 +53,19 @@ final class FastaLanguageStyleSettingsProvider extends LanguageCodeStyleSettings
                 """;
     }
 
+    @Override
+    public @NotNull CodeStyleConfigurable createConfigurable(@NotNull CodeStyleSettings baseSettings,
+                                                             @NotNull CodeStyleSettings modelSettings) {
+        return new CodeStyleAbstractConfigurable(baseSettings, modelSettings, "FASTA") {
+            @Override
+            protected @NotNull CodeStyleAbstractPanel createPanel(@NotNull CodeStyleSettings settings) {
+                return new FastaCodeStyleSettingsPanel(settings);
+            }
+        };
+    }
+
+    @Override
+    public CustomCodeStyleSettings createCustomSettings(@NotNull CodeStyleSettings settings) {
+        return new FastaCodeStyleSettings(settings);
+    }
 }

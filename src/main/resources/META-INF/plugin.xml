@@ -45,9 +45,6 @@
         <postFormatProcessor
                 implementation="com.kivojenko.plugin.fasta.language.formatter.FastaPostFormatProcessor"/>
 
-        <codeStyleSettingsProvider
-                implementation="com.kivojenko.plugin.fasta.language.formatter.settings.FastaCodeStyleSettingsProvider"/>
-
         <colorSettingsPage implementation="com.kivojenko.plugin.fasta.language.highlight.setting.FastaColorSettingsPage"/>
 
         <langCodeStyleSettingsProvider
