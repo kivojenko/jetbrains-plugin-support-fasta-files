@@ -10,12 +10,9 @@ import com.intellij.psi.PsiLiteralExpression;
 import com.kivojenko.plugin.fasta.language.FastaUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 import static com.kivojenko.plugin.fasta.language.FastaUtil.FILE_EXTENSION;
 
 final class FastaAnnotator implements Annotator, DumbAware {
-
 
     @Override
     public void annotate(@NotNull final PsiElement element, @NotNull AnnotationHolder holder) {
@@ -29,13 +26,15 @@ final class FastaAnnotator implements Annotator, DumbAware {
         }
 
         var sequences = FastaUtil.findSequences(element.getProject(), value);
-        if (!sequences.isEmpty()) {
-            var description = String.join("\n", sequences.stream().map(s -> Objects.requireNonNull(s.getHeader().getDescription()).getText()).toList());
-            holder.newAnnotation(HighlightSeverity.INFORMATION, description)
-                    .range(element.getTextRange())
-                    .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
-                    .create();
+        if (sequences.isEmpty()) {
+            return;
         }
 
+        var sequenceList = sequences.stream().map(s -> s.getHeader().getDescription().getText()).toList();
+        var description = String.join("\n", sequenceList);
+        holder.newAnnotation(HighlightSeverity.INFORMATION, description)
+                .range(element.getTextRange())
+                .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
+                .create();
     }
 }

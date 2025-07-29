@@ -1,10 +1,10 @@
 plugins {
     id("java")
-    id("org.jetbrains.intellij.platform") version "2.2.0"
+    id("org.jetbrains.intellij.platform") version "2.7.0"
 }
 
 group = "com.kivojenko.plugin.fasta"
-version = "1.0.0"
+version = "1.0.1"
 sourceSets["main"].java.srcDirs("src/main/gen")
 
 repositories {
@@ -16,14 +16,14 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaCommunity("2024.3.1.1")
+        intellijIdeaCommunity("2025.1.2")
         bundledPlugin("com.intellij.java")
         pluginVerifier()
-        plugin("PsiViewer:243.7768")
+        plugin("PsiViewer:2025.1")
     }
-    implementation("org.biojava:biojava-core:7.1.3")
-    compileOnly("org.projectlombok:lombok:1.18.36")
-    annotationProcessor("org.projectlombok:lombok:1.18.36")
+    implementation("org.biojava:biojava-core:7.2.2")
+    compileOnly("org.projectlombok:lombok:1.18.38")
+    annotationProcessor("org.projectlombok:lombok:1.18.38")
 }
 
 
@@ -35,8 +35,8 @@ java {
 
 tasks {
     withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
+        sourceCompatibility = "21"
+        targetCompatibility = "21"
     }
 }
 

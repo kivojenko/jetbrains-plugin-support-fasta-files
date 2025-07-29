@@ -30,7 +30,7 @@ public class FastaBlock extends AbstractBlock implements BlockWithParent {
         while (child != null) {
             if (child.getElementType() != TokenType.WHITE_SPACE) {
                 var alignment = Alignment.createAlignment();
-                var wrap = Wrap.createChildWrap(this.myWrap, WrapType.NORMAL, false);
+                var wrap = Wrap.createChildWrap(this.myWrap, WrapType.NONE, false);
                 var block = new FastaBlock(child, wrap, alignment, spacingBuilder);
                 blocks.add(block);
             }

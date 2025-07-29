@@ -45,7 +45,7 @@ public class FastaStructureViewElement implements StructureViewTreeElement, Sort
     @NotNull
     @Override
     public String getAlphaSortKey() {
-        return myElement.getPresentation() != null ? myElement.getPresentation().getPresentableText() : "";
+        return myElement.getPresentation() != null && myElement.getPresentation().getPresentableText() != null ? myElement.getPresentation().getPresentableText() : "";
     }
 
     @NotNull

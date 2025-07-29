@@ -26,10 +26,8 @@ final class FastaFoldingBuilder extends FoldingBuilderEx implements DumbAware {
     private void collectFoldableRegions(PsiElement element, List<FoldingDescriptor> descriptors) {
         for (PsiElement child : element.getChildren()) {
             if (isFoldableToken(child)) {
-                descriptors.add(new FoldingDescriptor(
-                        child.getNode(),
-                        child.getTextRange()
-                ));
+                var descriptor = new FoldingDescriptor(child.getNode(), child.getTextRange());
+                descriptors.add(descriptor);
             }
             collectFoldableRegions(child, descriptors);
         }

@@ -24,14 +24,17 @@ public class FastaUtil {
         List<FastaSequence> result = new ArrayList<>();
         Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(FastaFileType.INSTANCE, GlobalSearchScope.allScope(project));
         virtualFiles.removeIf(file -> !name.equals(file.getName()));
-        for (VirtualFile virtualFile : virtualFiles) {
+
+        for (var virtualFile : virtualFiles) {
             FastaFile file = (FastaFile) PsiManager.getInstance(project).findFile(virtualFile);
-            if (file != null) {
-                FastaSequence[] properties = PsiTreeUtil.getChildrenOfType(file, FastaSequence.class);
-                if (properties != null) {
-                    result.addAll(Arrays.asList(properties));
-                }
+            if (file == null) {
+                continue;
             }
+            FastaSequence[] properties = PsiTreeUtil.getChildrenOfType(file, FastaSequence.class);
+            if (properties == null) {
+                continue;
+            }
+            result.addAll(Arrays.asList(properties));
         }
         return result;
     }
