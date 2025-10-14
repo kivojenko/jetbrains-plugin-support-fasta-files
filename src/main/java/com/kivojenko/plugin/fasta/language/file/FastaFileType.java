@@ -3,7 +3,6 @@ package com.kivojenko.plugin.fasta.language.file;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.tree.IFileElementType;
 import com.kivojenko.plugin.fasta.FastaIcons;
 import com.kivojenko.plugin.fasta.language.FastaLanguage;
 import org.jetbrains.annotations.NotNull;
@@ -13,9 +12,6 @@ import javax.swing.*;
 
 public class FastaFileType extends LanguageFileType {
     public static final FastaFileType INSTANCE = new FastaFileType();
-    public static final IFileElementType FILE = new IFileElementType(FastaLanguage.INSTANCE);
-
-
     private FastaFileType() {
         super(FastaLanguage.INSTANCE);
     }

@@ -15,15 +15,6 @@ import javax.swing.*;
 
 public class FastaPsiImplUtil extends GeneratedParserUtilBase {
 
-
-    public static String getStringValue(PsiElement element, IElementType name) {
-        ASTNode keyNode = element.getNode().findChildByType(name);
-        if (keyNode != null) {
-            return keyNode.getText().replaceAll("\\\\ ", " ");
-        }
-        return null;
-    }
-
     public static ItemPresentation getPresentation(final FastaSequence element) {
         return new ItemPresentation() {
             @Override

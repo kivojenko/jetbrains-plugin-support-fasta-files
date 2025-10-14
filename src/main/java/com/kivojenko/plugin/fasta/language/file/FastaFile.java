@@ -7,8 +7,6 @@ import com.kivojenko.plugin.fasta.language.FastaLanguage;
 import org.jetbrains.annotations.NotNull;
 
 public class FastaFile extends PsiFileBase {
-
-
     public FastaFile(@NotNull FileViewProvider viewProvider) {
         super(viewProvider, FastaLanguage.INSTANCE);
     }

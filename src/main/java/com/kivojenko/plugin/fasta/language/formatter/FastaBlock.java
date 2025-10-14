@@ -39,7 +39,6 @@ public class FastaBlock extends AbstractBlock implements BlockWithParent {
         return blocks;
     }
 
-
     @Override
     public Indent getIndent() {
         return Indent.getNoneIndent();
