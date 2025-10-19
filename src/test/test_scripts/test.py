@@ -1,7 +1,7 @@
 from Bio import SeqIO
 
 # Input and output FASTA file paths
-input_file = "example.fasta"
+input_file = "highlight.fasta"
 output_file = "filtered.fasta"
 
 # Filter sequences longer than 100 bases

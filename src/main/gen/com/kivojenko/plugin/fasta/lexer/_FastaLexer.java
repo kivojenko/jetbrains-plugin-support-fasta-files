@@ -39,7 +39,8 @@ public class _FastaLexer implements FlexLexer {
   private static final int [] ZZ_CMAP_TOP = zzUnpackcmap_top();
 
   private static final String ZZ_CMAP_TOP_PACKED_0 =
-    "\1\0\37\u0100\1\u0200\267\u0100\10\u0300\u1020\u0100";
+    "\1\0\25\u0100\1\u0200\11\u0100\1\u0300\17\u0100\1\u0400\247\u0100"+
+    "\10\u0500\u1020\u0100";
 
   private static int [] zzUnpackcmap_top() {
     int [] result = new int[4352];
@@ -70,11 +71,12 @@ public class _FastaLexer implements FlexLexer {
     "\11\0\1\1\1\2\1\3\1\4\1\5\22\0\1\4"+
     "\11\0\1\6\2\0\1\6\20\0\1\7\2\0\1\10"+
     "\1\11\1\10\3\11\1\10\2\11\1\0\3\11\1\10"+
-    "\1\0\4\11\1\12\1\13\5\11\52\0\1\3\u01a2\0"+
-    "\2\3\326\0\u0100\3";
+    "\1\0\4\11\1\12\1\13\5\11\52\0\1\3\32\0"+
+    "\1\14\u01df\0\1\14\177\0\13\14\35\0\2\3\5\0"+
+    "\1\14\57\0\1\14\240\0\1\14\377\0\u0100\15";
 
   private static int [] zzUnpackcmap_blocks() {
-    int [] result = new int[1024];
+    int [] result = new int[1536];
     int offset = 0;
     offset = zzUnpackcmap_blocks(ZZ_CMAP_BLOCKS_PACKED_0, offset, result);
     return result;
@@ -98,11 +100,12 @@ public class _FastaLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\3\0\1\1\2\2\1\3\1\4\2\5\1\6\2\7"+
-    "\2\10\1\11\1\12\1\10\1\11\1\12\1\10\4\0";
+    "\3\0\1\1\2\2\1\3\1\1\2\4\1\5\1\0"+
+    "\2\6\2\7\1\10\1\11\1\7\1\12\1\10\1\11"+
+    "\1\7\4\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[25];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -127,13 +130,13 @@ public class _FastaLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\14\0\30\0\44\0\44\0\60\0\44\0\74"+
-    "\0\44\0\110\0\74\0\44\0\124\0\140\0\154\0\170"+
-    "\0\204\0\220\0\234\0\250\0\264\0\154\0\170\0\204"+
-    "\0\220";
+    "\0\0\0\16\0\34\0\52\0\52\0\70\0\52\0\106"+
+    "\0\52\0\124\0\106\0\106\0\52\0\142\0\160\0\176"+
+    "\0\214\0\232\0\250\0\106\0\266\0\304\0\322\0\176"+
+    "\0\214\0\232\0\250";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[25];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -156,21 +159,22 @@ public class _FastaLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\4\2\5\1\0\1\5\1\6\1\4\1\7\4\4"+
-    "\2\10\1\11\2\10\1\12\1\10\1\13\4\10\1\4"+
-    "\2\14\1\0\1\14\1\15\1\16\1\7\1\17\1\20"+
-    "\1\21\1\22\16\0\1\5\11\0\2\10\1\0\2\10"+
-    "\1\0\6\10\2\0\1\11\13\0\1\14\17\0\1\16"+
-    "\1\0\1\16\1\23\1\24\1\25\1\0\2\26\2\0"+
-    "\1\26\1\16\1\0\1\17\1\20\1\21\1\22\1\0"+
-    "\2\27\2\0\1\27\1\23\1\0\3\20\2\0\2\30"+
-    "\2\0\1\30\1\24\1\0\1\21\1\20\1\21\2\0"+
-    "\2\31\2\0\1\31\1\25\1\0\1\22\2\0\1\22"+
-    "\6\0\1\23\1\0\3\23\7\0\1\24\1\0\1\24"+
-    "\1\23\1\24\7\0\1\25\1\0\1\25\2\0\1\25";
+    "\1\4\2\5\1\0\1\5\1\6\1\4\1\7\5\4"+
+    "\1\0\1\10\1\5\1\11\1\0\1\5\1\12\1\10"+
+    "\1\13\4\10\1\4\1\14\1\4\2\15\1\0\1\15"+
+    "\1\16\1\17\1\7\1\20\1\21\1\22\1\23\1\4"+
+    "\21\0\1\5\13\0\2\24\1\0\2\24\1\0\10\24"+
+    "\2\0\1\11\15\0\1\15\21\0\1\17\1\0\1\17"+
+    "\1\25\1\26\1\27\3\0\2\30\2\0\1\30\1\17"+
+    "\1\0\1\20\1\21\1\22\1\23\3\0\2\31\2\0"+
+    "\1\31\1\25\1\0\3\21\4\0\2\32\2\0\1\32"+
+    "\1\26\1\0\1\22\1\21\1\22\4\0\2\33\2\0"+
+    "\1\33\1\27\1\0\1\23\2\0\1\23\10\0\1\25"+
+    "\1\0\3\25\11\0\1\26\1\0\1\26\1\25\1\26"+
+    "\11\0\1\27\1\0\1\27\2\0\1\27\2\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[192];
+    int [] result = new int[224];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -208,11 +212,11 @@ public class _FastaLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\3\0\2\11\1\1\1\11\1\1\1\11\2\1\1\11"+
-    "\11\1\4\0";
+    "\3\0\2\11\1\1\1\11\1\1\1\11\2\1\1\0"+
+    "\1\11\12\1\4\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[25];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -543,39 +547,39 @@ public class _FastaLexer implements FlexLexer {
           // fall through
           case 13: break;
           case 4:
-            { return DESCRIPTION;
-            }
-          // fall through
-          case 14: break;
-          case 5:
             { yybegin(BODY_STATE);
           return WHITE_SPACE;
             }
           // fall through
-          case 15: break;
-          case 6:
+          case 14: break;
+          case 5:
             { return START;
             }
           // fall through
-          case 16: break;
-          case 7:
+          case 15: break;
+          case 6:
             { yybegin(YYINITIAL);
           return WHITE_SPACE;
             }
           // fall through
+          case 16: break;
+          case 7:
+            { return RNA;
+            }
+          // fall through
           case 17: break;
           case 8:
-            { return RNA;
+            { return PROTEIN;
             }
           // fall through
           case 18: break;
           case 9:
-            { return PROTEIN;
+            { return DNA;
             }
           // fall through
           case 19: break;
           case 10:
-            { return DNA;
+            { return DESCRIPTION;
             }
           // fall through
           case 20: break;

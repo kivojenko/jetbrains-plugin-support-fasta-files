@@ -1,4 +1,4 @@
-package com.kivojenko.plugin.fasta.language.highlight.setting;
+package com.kivojenko.plugin.fasta.language.highlight.settings;
 
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;

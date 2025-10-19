@@ -1,10 +1,10 @@
 plugins {
     id("java")
-    id("org.jetbrains.intellij.platform") version "2.7.0"
+    id("org.jetbrains.intellij.platform") version "2.9.0"
 }
 
 group = "com.kivojenko.plugin.fasta"
-version = "1.0.1"
+version = "1.0.0"
 sourceSets["main"].java.srcDirs("src/main/gen")
 
 repositories {
@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaCommunity("2025.1.2")
+        intellijIdea("2025.1.2")
         bundledPlugin("com.intellij.java")
         pluginVerifier()
         plugin("PsiViewer:2025.1")

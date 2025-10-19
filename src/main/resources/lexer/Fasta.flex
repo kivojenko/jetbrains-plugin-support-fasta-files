@@ -23,7 +23,7 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 %state HEADER_STATE BODY_STATE
 
 START = ">"
-DESCRIPTION = [^\n\r]+
+DESCRIPTION = [^\s][^\n\r]+
 DNA_CHARS = [ATGCN]
 RNA_CHARS = [AUGCN]
 PROTEIN_CHARS = [ACDEFGHIKLMNPQRSTVWYBXZ]

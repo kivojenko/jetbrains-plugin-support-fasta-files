@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.kivojenko.plugin.fasta</id>
-    <name>Fasta</name>
+    <name>FASTA Format Support</name>
     <vendor email="kivojenko@gmail.com">Ksenija Kivojenko</vendor>
     <description>
         <![CDATA[
@@ -20,6 +20,7 @@
                 language="FASTA"
                 extensions="fasta;fas;fa;fna;ffn;faa;mpfa;frn"/>
 
+
         <lang.parserDefinition
                 language="FASTA"
                 implementationClass="com.kivojenko.plugin.fasta.language.parser.FastaParserDefinition"/>
@@ -30,7 +31,6 @@
 
         <lang.foldingBuilder
                 language="FASTA"
-
                 implementationClass="com.kivojenko.plugin.fasta.language.folding.FastaFoldingBuilder"/>
 
         <lang.psiStructureViewFactory
@@ -45,7 +45,8 @@
         <postFormatProcessor
                 implementation="com.kivojenko.plugin.fasta.language.formatter.FastaPostFormatProcessor"/>
 
-        <colorSettingsPage implementation="com.kivojenko.plugin.fasta.language.highlight.setting.FastaColorSettingsPage"/>
+        <colorSettingsPage
+                implementation="com.kivojenko.plugin.fasta.language.highlight.settings.FastaColorSettingsPage"/>
 
         <langCodeStyleSettingsProvider
                 implementation="com.kivojenko.plugin.fasta.language.formatter.settings.FastaLanguageStyleSettingsProvider"/>
@@ -55,5 +56,24 @@
         <annotator
                 language="JAVA"
                 implementationClass="com.kivojenko.plugin.fasta.language.annotator.FastaAnnotator"/>
+
+
+        <intentionAction>
+            <language>FASTA</language>
+            <className>com.kivojenko.plugin.fasta.actions.ReverseSequenceIntention</className>
+            <category>FASTA intentions</category>
+        </intentionAction>
+
+        <intentionAction>
+            <language>FASTA</language>
+            <className>com.kivojenko.plugin.fasta.actions.TranslateToProteinIntention</className>
+            <category>FASTA intentions</category>
+        </intentionAction>
+
+        <intentionAction>
+            <language>FASTA</language>
+            <className>com.kivojenko.plugin.fasta.actions.GetReverseComplementIntention</className>
+            <category>FASTA intentions</category>
+        </intentionAction>
     </extensions>
 </idea-plugin>

@@ -15,10 +15,8 @@ final class FastaFormattingModelBuilder implements FormattingModelBuilder {
                 .none()
                 .after(FastaTokenTypes.HEADER)
                 .lineBreakInCode()
-                .after(FastaTokenTypes.START)
-                .spaceIf(customSettings.SPACE_AFTER_START)
-                .around(FastaTokenTypes.DESCRIPTION)
-                .none()
+                .between(FastaTokenTypes.START, FastaTokenTypes.DESCRIPTION)
+                .spaces(customSettings.SPACE_AFTER_START ? 1 : 0)
                 .after(FastaTokenTypes.BODY)
                 .blankLines(customSettings.BLANK_LINE_BETWEEN_SEQUENCES ? 1 : 0);
     }
