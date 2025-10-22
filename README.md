@@ -2,7 +2,12 @@
 
 FASTA Format Support is a JetBrains plugin that adds first‑class support for FASTA files used in bioinformatics for nucleic acid (DNA/RNA) and protein sequences.
 
-It provides syntax highlighting, folding, structure view, formatting, color settings, and handy editor intentions for transforming sequences.
+It provides syntax highlighting, folding, structure view, formatting, hints, color settings and handy editor intentions for transforming sequences.
+
+## Change Log
+
+- **v1.0.1**: Add inlay hints for length, GC content, ambiguity and molecular weight.
+- **v1.0.0**: Initial release with core functionality: grammar, folding, highlighting, structure view.
 
 ## Features
 

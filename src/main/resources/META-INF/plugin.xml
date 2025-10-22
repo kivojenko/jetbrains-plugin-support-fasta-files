@@ -10,7 +10,15 @@
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.java</depends>
+
+    <change-notes>
+        <![CDATA[
+        <ul>
+            <li>1.0.1: Add inlay hints for length, GC content, ambiguity and molecular weight</li>
+            <li>1.0.0: Initial release: grammar, folding, highlighting, structure view</li>
+        </ul>
+        ]]>
+    </change-notes>
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType
@@ -53,10 +61,17 @@
 
         <navbar implementation="com.kivojenko.plugin.fasta.language.structure.FastaStructureAwareNavbar"/>
 
-        <annotator
-                language="JAVA"
-                implementationClass="com.kivojenko.plugin.fasta.language.annotator.FastaAnnotator"/>
+        <codeInsight.daemonBoundCodeVisionProvider
+                implementation="com.kivojenko.plugin.fasta.language.inspector.visionPlaceholders.FastaAmbiguousVisionProvider"/>
+        <codeInsight.daemonBoundCodeVisionProvider
+                implementation="com.kivojenko.plugin.fasta.language.inspector.visionPlaceholders.FastaGcContentVisionProvider"/>
+        <codeInsight.daemonBoundCodeVisionProvider
+                implementation="com.kivojenko.plugin.fasta.language.inspector.visionPlaceholders.FastaMolecularWeightVisionProvider"/>
+        <codeInsight.daemonBoundCodeVisionProvider
+                implementation="com.kivojenko.plugin.fasta.language.inspector.visionPlaceholders.FastaLengthVisionProvider"/>
 
+        <codeInsight.daemonBoundCodeVisionProvider
+                implementation="com.kivojenko.plugin.fasta.language.inspector.FastaCodeVisionProvider"/>
 
         <intentionAction>
             <language>FASTA</language>
