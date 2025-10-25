@@ -1,8 +1,6 @@
 package com.kivojenko.plugin.fasta.language.file;
 
 import com.intellij.openapi.fileTypes.LanguageFileType;
-import com.intellij.psi.FileViewProvider;
-import com.intellij.psi.PsiFile;
 import com.kivojenko.plugin.fasta.FastaIcons;
 import com.kivojenko.plugin.fasta.language.FastaLanguage;
 import org.jetbrains.annotations.NotNull;
@@ -21,12 +19,6 @@ public class FastaFileType extends LanguageFileType {
     public String getName() {
         return "FASTA File";
     }
-
-    @NotNull
-    public PsiFile createPsiFile(@NotNull FileViewProvider viewProvider) {
-        return new FastaFile(viewProvider);
-    }
-
 
     @Override
     @NotNull

@@ -10,6 +10,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiRecursiveElementVisitor;
 import com.intellij.psi.tree.IElementType;
+import com.kivojenko.plugin.fasta.language.file.FastaFileType;
 import com.kivojenko.plugin.fasta.model.SequenceFactory;
 import kotlin.Pair;
 import lombok.SneakyThrows;
@@ -49,6 +50,9 @@ public class FastaCodeVisionProvider implements DaemonBoundCodeVisionProvider {
             @NotNull PsiFile file
     ) {
         List<Pair<TextRange, CodeVisionEntry>> result = new ArrayList<>();
+        if (file.getFileType() != FastaFileType.INSTANCE) {
+            return result;
+        }
 
         file.accept(new PsiRecursiveElementVisitor() {
             @SneakyThrows

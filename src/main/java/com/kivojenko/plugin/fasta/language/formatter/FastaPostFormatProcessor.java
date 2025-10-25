@@ -7,6 +7,7 @@ import com.intellij.psi.PsiParserFacade;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.impl.source.codeStyle.PostFormatProcessor;
 import com.kivojenko.plugin.fasta.language.FastaTokenTypes;
+import com.kivojenko.plugin.fasta.language.file.FastaFileType;
 import com.kivojenko.plugin.fasta.language.formatter.settings.FastaCodeStyleSettings;
 import com.kivojenko.plugin.fasta.language.psi.impl.FastaElementFactory;
 import com.kivojenko.plugin.fasta.language.psi.impl.FastaSequenceImpl;
@@ -17,6 +18,10 @@ public class FastaPostFormatProcessor implements PostFormatProcessor {
 
     @Override
     public @NotNull TextRange processText(@NotNull PsiFile file, @NotNull TextRange range, @NotNull CodeStyleSettings settings) {
+        if (file.getFileType() != FastaFileType.INSTANCE) {
+            return TextRange.EMPTY_RANGE;
+        }
+
         var customSettings = settings.getCustomSettings(FastaCodeStyleSettings.class);
 
         for (PsiElement element : file.getChildren()) {
@@ -27,6 +32,9 @@ public class FastaPostFormatProcessor implements PostFormatProcessor {
 
     @Override
     public @NotNull PsiElement processElement(@NotNull PsiElement element, @NotNull CodeStyleSettings settings) {
+        if (element.getContainingFile().getFileType() != FastaFileType.INSTANCE) {
+            return element;
+        }
         return processElement(element, settings.getCustomSettings(FastaCodeStyleSettings.class));
     }
 

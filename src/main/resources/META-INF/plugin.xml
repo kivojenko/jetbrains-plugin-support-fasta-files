@@ -14,6 +14,7 @@
     <change-notes>
         <![CDATA[
         <ul>
+            <li>1.0.2: Bug fix</li>
             <li>1.0.1: Add inlay hints for length, GC content, ambiguity and molecular weight</li>
             <li>1.0.0: Initial release: grammar, folding, highlighting, structure view</li>
         </ul>
