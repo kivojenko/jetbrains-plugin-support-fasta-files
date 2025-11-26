@@ -4,7 +4,42 @@
     <vendor email="kivojenko@gmail.com">Ksenija Kivojenko</vendor>
     <description>
         <![CDATA[
-        This plugin supports FASTA file syntax for BioInformatics nucleic acids (DNA and RNA) and protein sequences research.
+<p>This plugin supports FASTA file syntax for Bioinformatics research involving nucleic acids (DNA and RNA) and protein sequences.</p>
+
+
+<h2>What It Does</h2>
+<p>The plugin provides full support for editing and analyzing FASTA files directly within your code editor. It recognizes headers, sequences, and file structure, allowing you to navigate and transform sequences easily. It includes built-in transformations like reverse complement and protein translation using BioJava.</p>
+
+
+<h2>Supported File Extensions</h2>
+<ul>
+<li>.fasta</li>
+<li>.fas</li>
+<li>.fa</li>
+<li>.fna</li>
+<li>.ffn</li>
+<li>.faa</li>
+<li>.mpfa</li>
+<li>.frn</li>
+</ul>
+
+
+<h2>Key Features</h2>
+<ul>
+<li>Recognizes FASTA files and associates them automatically</li>
+<li>Syntax highlighting for DNA, RNA, and protein sequences</li>
+<li>Code folding for long sequences and records</li>
+<li>Structure view and navigation by headers and records</li>
+<li>Code style and formatting for wrapping and spacing</li>
+<li>Post-format processing tailored for FASTA content</li>
+<li>Editor intentions for sequence transformations:
+<ul>
+<li>Reverse sequence</li>
+<li>Reverse complement (DNA/RNA)</li>
+<li>Translate to protein (BioJava)</li>
+</ul>
+</li>
+</ul>
         ]]>
     </description>
 
