@@ -17,7 +17,9 @@ public class FastaSyntaxHighlighter extends SyntaxHighlighterBase {
     @Override
     public TextAttributesKey @NotNull [] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(FastaTokenTypes.DESCRIPTION)) {
-            return new TextAttributesKey[]{FastaHighlightingColors.DESCRIPTION};
+            return new TextAttributesKey[] { FastaHighlightingColors.DESCRIPTION };
+        } else if (tokenType.equals(FastaTokenTypes.COMMENT_TEXT)) {
+            return new TextAttributesKey[] { FastaHighlightingColors.COMMENT };
         } else if (tokenType.equals(FastaTokenTypes.PROTEIN)) {
             return new TextAttributesKey[]{FastaHighlightingColors.getProteinHighlightingKey()};
         } else if (tokenType.equals(FastaTokenTypes.DNA)) {

@@ -15,6 +15,8 @@
   tokenTypeClass="com.kivojenko.plugin.fasta.language.parser.FastaTokenType"
 
   tokens = [
+  COMMENT_START
+  COMMENT
   START
   DESCRIPTION
   PROTEIN
@@ -23,9 +25,11 @@
   ]
 }
 
-file ::= sequence* <<eof>>
+file ::= (comment* sequence)* comment?<<eof>>
 
-sequence ::= header body {methods=[getPresentation]}
+comment ::= COMMENT_START COMMENT_TEXT
+
+sequence ::= header body? {methods=[getPresentation]}
 header ::= START DESCRIPTION
 
 body ::= PROTEIN | RNA | DNA {methods=[getValue]}

@@ -20,84 +20,87 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 %function advance
 %type IElementType
 %unicode
-%state HEADER_STATE BODY_STATE
+%state COMMENT_STATE HEADER_STATE BODY_STATE
 
 START = ">"
+COMMENT_START = ";"
 DESCRIPTION = [^\s][^\n\r]+
-DNA_CHARS = [ATGCN]
-RNA_CHARS = [AUGCN]
-PROTEIN_CHARS = [ACDEFGHIKLMNPQRSTVWYBXZ]
-DNA = ({DNA_CHARS}+[\t\n\r]*)*({DNA_CHARS}|[*-])+
-RNA = ({RNA_CHARS}+[\t\n\r]*)*({RNA_CHARS}|[*-])+
-PROTEIN = ({PROTEIN_CHARS}+[\t\n\r]*)*({PROTEIN_CHARS}|[*-])+
+DNA_CHARS = [ATGCN-]
+RNA_CHARS = [AUGCN-]
+PROTEIN_CHARS = [ACDEFGHIJKLMNPQRSTVWYBXZacdefghijklmnpqrstvwybxz-]
+DNA = ({DNA_CHARS}+[\t\n\r]*)*({DNA_CHARS}|[*])+
+RNA = ({RNA_CHARS}+[\t\n\r]*)*({RNA_CHARS}|[*])+
+PROTEIN = ({PROTEIN_CHARS}+[\t\n\r]*)*({PROTEIN_CHARS}|[*])+
+COMMENT_TEXT = (\s*[^\n\r]*)
 LINE_TERMINATOR = \r|\n|\r\n
 BAD_CHARACTER = .
 
 %%
 
 <YYINITIAL> {
- {LINE_TERMINATOR} | [ \t\f] {
-          return WHITE_SPACE;
-      }
+ {LINE_TERMINATOR} | [ \t\f] { return WHITE_SPACE; }
 
   {START} {
     yybegin(HEADER_STATE);
     return START;
   }
 
-  . {
-    return BAD_CHARACTER;
+  {COMMENT_START} {
+      yybegin(COMMENT_STATE);
+      return COMMENT_START;
   }
+
+  . { return BAD_CHARACTER;}
+}
+
+<COMMENT_STATE> {
+    {COMMENT_TEXT} {
+        yybegin(YYINITIAL);
+        return COMMENT_TEXT;
+      }
+    {LINE_TERMINATOR} | [ \t\f] {
+      yybegin(YYINITIAL);
+      return WHITE_SPACE;
+    }
 }
 
 <HEADER_STATE> {
-    {START} {
-        return START;
-      }
+   {START} { return START; }
 
-  {DESCRIPTION} {
-      return DESCRIPTION;
-    }
+  {DESCRIPTION} { return DESCRIPTION; }
 
-   {LINE_TERMINATOR} {
-          yybegin(BODY_STATE);
-          return WHITE_SPACE;
-      }
-
-  [ \t\f] {
+  {LINE_TERMINATOR} {
+      yybegin(BODY_STATE);
       return WHITE_SPACE;
-      }
+  }
 
-   . {
-      return BAD_CHARACTER;
-    }
+  [ \t\f] { return WHITE_SPACE; }
+
+  . { return BAD_CHARACTER; }
 
 }
 
 <BODY_STATE> {
-  {RNA} {
-          return RNA;
-      }
+  {RNA} { return RNA; }
 
-  {DNA} {
-          return DNA;
-      }
+  {DNA} { return DNA; }
 
-    {PROTEIN} {
-          return PROTEIN;
-        }
+ {PROTEIN} { return PROTEIN; }
 
  {LINE_TERMINATOR} | [ \t\f] {
-          yybegin(YYINITIAL);
-          return WHITE_SPACE;
-      }
+      yybegin(YYINITIAL);
+      return WHITE_SPACE;
+  }
 
   {START} {
     yybegin(HEADER_STATE);
     return START;
   }
 
-  . {
-    return BAD_CHARACTER;
+  {COMMENT_START} {
+    yybegin(COMMENT_STATE);
+    return COMMENT_START;
   }
+
+  . { return BAD_CHARACTER; }
 }

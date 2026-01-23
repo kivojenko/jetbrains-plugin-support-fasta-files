@@ -1,10 +1,10 @@
 plugins {
     id("java")
-    id("org.jetbrains.intellij.platform") version "2.10.1"
+    id("org.jetbrains.intellij.platform") version "2.10.5"
 }
 
 group = "com.kivojenko.plugin.fasta"
-version = "1.0.2"
+version = "1.0.3"
 sourceSets["main"].java.srcDirs("src/main/gen")
 
 repositories {
@@ -20,8 +20,7 @@ dependencies {
         pluginVerifier()
         plugin("PsiViewer:252.23892.248")
     }
-    implementation("org.biojava:core:1.9.6")
-    implementation("org.biojava:biojava-core:7.2.2")
+    implementation("org.biojava:biojava-core:7.2.4")
 
     compileOnly("org.projectlombok:lombok:1.18.42")
     annotationProcessor("org.projectlombok:lombok:1.18.42")

@@ -1,9 +1,9 @@
 package com.kivojenko.plugin.fasta.language.formatter;
 
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiParserFacade;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.impl.source.codeStyle.PostFormatProcessor;
 import com.kivojenko.plugin.fasta.language.FastaTokenTypes;
@@ -32,34 +32,21 @@ public class FastaPostFormatProcessor implements PostFormatProcessor {
 
     @Override
     public @NotNull PsiElement processElement(@NotNull PsiElement element, @NotNull CodeStyleSettings settings) {
-        if (element.getContainingFile().getFileType() != FastaFileType.INSTANCE) {
-            return element;
-        }
         return processElement(element, settings.getCustomSettings(FastaCodeStyleSettings.class));
     }
 
     public @NotNull PsiElement processElement(@NotNull PsiElement element, @NotNull FastaCodeStyleSettings settings) {
         var type = element.getNode().getElementType();
 
-        if (type == FastaTokenTypes.SEQUENCE) {
-            element = ((FastaSequenceImpl) element).getBody().getValue();
+        if (type == FastaTokenTypes.SEQUENCE && ((FastaSequenceImpl) element).getBody() != null) {
+            var body = ((FastaSequenceImpl) element).getBody().getValue();
 
-            var cleanedSequence = element.getText().replaceAll("[\\s\n]+", "");
-            var wrappedSequence = wrapSequence(cleanedSequence, MAX_LINE_LENGTH);
-            updatePsiElementText(element, wrappedSequence);
+            var cleaned = body.getText().replaceAll("\\s+", "");
+            var wrapped = wrapSequence(cleaned, MAX_LINE_LENGTH);
+
+            body.replace(createNewLeafElement(element.getProject(), wrapped));
         }
 
-        var next = element.getNode().getTreeNext();
-
-        if (next != null && next.getElementType() == type) {
-            element.delete();
-        } else if (next != null) {
-            PsiElement newWhitespace = PsiParserFacade
-                    .getInstance(element.getProject())
-                    .createWhiteSpaceFromText(settings.BLANK_LINE_BETWEEN_SEQUENCES ? "\n\n" : "\n");
-
-            element.replace(newWhitespace);
-        }
         return element;
     }
 
@@ -72,11 +59,7 @@ public class FastaPostFormatProcessor implements PostFormatProcessor {
         return wrapped.toString();
     }
 
-    private void updatePsiElementText(PsiElement element, String newText) {
-        element.replace(createNewLeafElement(element, newText));
-    }
-
-    private PsiElement createNewLeafElement(PsiElement element, String text) {
-        return FastaElementFactory.createValueElement(element.getProject(), text);
+    private PsiElement createNewLeafElement(Project project, String text) {
+        return FastaElementFactory.createValueElement(project, text);
     }
 }

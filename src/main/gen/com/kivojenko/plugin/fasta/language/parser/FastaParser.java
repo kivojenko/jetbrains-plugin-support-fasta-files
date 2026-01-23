@@ -49,25 +49,67 @@ public class FastaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // sequence* <<eof>>
+  // COMMENT_START COMMENT_TEXT
+  public static boolean comment(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "comment")) return false;
+    if (!nextTokenIs(b, COMMENT_START)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, COMMENT_START, COMMENT_TEXT);
+    exit_section_(b, m, COMMENT, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // (comment* sequence)* comment?<<eof>>
   static boolean file(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "file")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = file_0(b, l + 1);
+    r = r && file_1(b, l + 1);
     r = r && eof(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // sequence*
+  // (comment* sequence)*
   private static boolean file_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "file_0")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!sequence(b, l + 1)) break;
+      if (!file_0_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "file_0", c)) break;
     }
+    return true;
+  }
+
+  // comment* sequence
+  private static boolean file_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "file_0_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = file_0_0_0(b, l + 1);
+    r = r && sequence(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // comment*
+  private static boolean file_0_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "file_0_0_0")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!comment(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "file_0_0_0", c)) break;
+    }
+    return true;
+  }
+
+  // comment?
+  private static boolean file_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "file_1")) return false;
+    comment(b, l + 1);
     return true;
   }
 
@@ -84,16 +126,23 @@ public class FastaParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // header body
+  // header body?
   public static boolean sequence(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "sequence")) return false;
     if (!nextTokenIs(b, START)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = header(b, l + 1);
-    r = r && body(b, l + 1);
+    r = r && sequence_1(b, l + 1);
     exit_section_(b, m, SEQUENCE, r);
     return r;
+  }
+
+  // body?
+  private static boolean sequence_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "sequence_1")) return false;
+    body(b, l + 1);
+    return true;
   }
 
 }

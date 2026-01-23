@@ -11,6 +11,10 @@ public class FastaVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitComment(@NotNull FastaComment o) {
+    visitPsiElement(o);
+  }
+
   public void visitHeader(@NotNull FastaHeader o) {
     visitPsiElement(o);
   }

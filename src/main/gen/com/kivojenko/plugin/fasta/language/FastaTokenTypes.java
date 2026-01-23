@@ -11,9 +11,12 @@ import com.kivojenko.plugin.fasta.language.psi.impl.*;
 public interface FastaTokenTypes {
 
   IElementType BODY = new FastaElementType("BODY");
+  IElementType COMMENT = new FastaElementType("COMMENT");
   IElementType HEADER = new FastaElementType("HEADER");
   IElementType SEQUENCE = new FastaElementType("SEQUENCE");
 
+  IElementType COMMENT_START = new FastaTokenType("COMMENT_START");
+  IElementType COMMENT_TEXT = new FastaTokenType("COMMENT_TEXT");
   IElementType DESCRIPTION = new FastaTokenType("DESCRIPTION");
   IElementType DNA = new FastaTokenType("DNA");
   IElementType PROTEIN = new FastaTokenType("PROTEIN");
@@ -25,6 +28,9 @@ public interface FastaTokenTypes {
       IElementType type = node.getElementType();
       if (type == BODY) {
         return new FastaBodyImpl(node);
+      }
+      else if (type == COMMENT) {
+        return new FastaCommentImpl(node);
       }
       else if (type == HEADER) {
         return new FastaHeaderImpl(node);

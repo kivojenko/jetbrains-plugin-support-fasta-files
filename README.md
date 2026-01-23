@@ -6,6 +6,7 @@ It provides syntax highlighting, folding, structure view, formatting, hints, col
 
 ## Change Log
 
+- **v1.0.3**: Add support for comments and ambiguous characters in protein sequences.
 - **v1.0.2**: Bug fix.
 - **v1.0.1**: Add inlay hints for length, GC content, ambiguity and molecular weight.
 - **v1.0.0**: Initial release with core functionality: grammar, folding, highlighting, structure view.

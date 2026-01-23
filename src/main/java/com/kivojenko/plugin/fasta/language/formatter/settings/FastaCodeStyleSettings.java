@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FastaCodeStyleSettings extends CustomCodeStyleSettings {
-    public boolean BLANK_LINE_BETWEEN_SEQUENCES = true;
     public boolean SPACE_AFTER_START = false;
 
     protected FastaCodeStyleSettings(CodeStyleSettings settings) {

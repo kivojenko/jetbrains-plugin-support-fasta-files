@@ -1,16 +1,16 @@
 // This is a generated file. Not intended for manual editing.
 package com.kivojenko.plugin.fasta.language.psi.impl;
 
-import java.util.List;
-import org.jetbrains.annotations.*;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.util.PsiTreeUtil;
-import static com.kivojenko.plugin.fasta.language.FastaTokenTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
-import com.kivojenko.plugin.fasta.language.psi.*;
+import com.intellij.lang.ASTNode;
 import com.intellij.navigation.ItemPresentation;
+import com.intellij.psi.PsiElementVisitor;
+import com.kivojenko.plugin.fasta.language.psi.FastaBody;
+import com.kivojenko.plugin.fasta.language.psi.FastaHeader;
+import com.kivojenko.plugin.fasta.language.psi.FastaSequence;
+import com.kivojenko.plugin.fasta.language.psi.FastaVisitor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class FastaSequenceImpl extends ASTWrapperPsiElement implements FastaSequence {
 
@@ -29,9 +29,9 @@ public class FastaSequenceImpl extends ASTWrapperPsiElement implements FastaSequ
   }
 
   @Override
-  @NotNull
+  @Nullable
   public FastaBody getBody() {
-    return findNotNullChildByClass(FastaBody.class);
+    return findChildByClass(FastaBody.class);
   }
 
   @Override

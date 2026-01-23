@@ -2,7 +2,7 @@ package com.kivojenko.plugin.fasta.model;
 
 import com.intellij.codeInsight.codeVision.ui.model.TextCodeVisionEntry;
 import lombok.SneakyThrows;
-import org.biojava.nbio.core.sequence.template.Compound;
+import org.biojava.nbio.core.sequence.template.AbstractSequence;
 
 import java.util.ArrayList;
 
@@ -10,10 +10,14 @@ import static com.kivojenko.plugin.fasta.language.FastaTokenTypes.PROTEIN;
 import static com.kivojenko.plugin.fasta.language.FastaUtil.PROTEIN_AMBIGUOUS;
 
 public class ProteinSequence extends Sequence {
-    @SneakyThrows
     public ProteinSequence(String sequence) {
         super(sequence, PROTEIN);
-        bioJavaSequence = new org.biojava.nbio.core.sequence.ProteinSequence(sequence);
+    }
+
+    @SneakyThrows
+    @Override
+    protected AbstractSequence<?> generateBioJavaSequence() {
+        return new org.biojava.nbio.core.sequence.ProteinSequence(sequence);
     }
 
     public void calculateProportions() {
@@ -21,8 +25,8 @@ public class ProteinSequence extends Sequence {
     }
 
     public void calculateWeight() {
-        bioJavaSequence.forEach((Compound c) -> weightDaltons += c.getMolecularWeight() != null ? c.getMolecularWeight() : 0.0);
-        weightDaltons -= (bioJavaSequence.getLength() - 1) * 18.01524;
+        getBioJavaSequence().forEach(c -> weightDaltons += c.getMolecularWeight() != null ? c.getMolecularWeight() : 0.0);
+        weightDaltons -= (getBioJavaSequence().getLength() - 1) * 18.01524;
     }
 
     public ArrayList<TextCodeVisionEntry> getEntries() {
@@ -38,10 +42,15 @@ public class ProteinSequence extends Sequence {
     }
 
     private String getMolecularWeightLabel() {
-        if (weightDaltons < 1_000) return String.format("%.2f Da", weightDaltons);
-        else if (weightDaltons < 1_000_000) return String.format("%.2f kDa", weightDaltons / 1_000);
-        else if (weightDaltons < 1_000_000_000) return String.format("%.2f MDa", weightDaltons / 1_000_000);
-        else return String.format("%.2f GDa", weightDaltons / 1_000_000_000);
+        if (weightDaltons < 1_000) {
+            return String.format("%.2f Da", weightDaltons);
+        } else if (weightDaltons < 1_000_000) {
+            return String.format("%.2f kDa", weightDaltons / 1_000);
+        } else if (weightDaltons < 1_000_000_000) {
+            return String.format("%.2f MDa", weightDaltons / 1_000_000);
+        } else {
+            return String.format("%.2f GDa", weightDaltons / 1_000_000_000);
+        }
     }
 
     public String getCompoundLabel() {

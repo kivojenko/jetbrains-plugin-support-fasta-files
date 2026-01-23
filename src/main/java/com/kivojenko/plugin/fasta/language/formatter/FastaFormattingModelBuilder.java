@@ -3,22 +3,27 @@ package com.kivojenko.plugin.fasta.language.formatter;
 import com.intellij.formatting.*;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.kivojenko.plugin.fasta.language.FastaLanguage;
-import com.kivojenko.plugin.fasta.language.FastaTokenTypes;
 import com.kivojenko.plugin.fasta.language.formatter.settings.FastaCodeStyleSettings;
 import org.jetbrains.annotations.NotNull;
+
+import static com.kivojenko.plugin.fasta.language.FastaTokenTypes.*;
 
 final class FastaFormattingModelBuilder implements FormattingModelBuilder {
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
         var customSettings = settings.getCustomSettings(FastaCodeStyleSettings.class);
         return new SpacingBuilder(settings, FastaLanguage.INSTANCE)
-                .between(FastaTokenTypes.SEQUENCE, FastaTokenTypes.SEQUENCE)
+                .between(SEQUENCE, SEQUENCE)
                 .none()
-                .after(FastaTokenTypes.HEADER)
+                .between(COMMENT, COMMENT)
+                .none()
+                .between(SEQUENCE, COMMENT)
+                .none()
+                .after(HEADER)
                 .lineBreakInCode()
-                .between(FastaTokenTypes.START, FastaTokenTypes.DESCRIPTION)
+                .between(START, DESCRIPTION)
                 .spaces(customSettings.SPACE_AFTER_START ? 1 : 0)
-                .after(FastaTokenTypes.BODY)
-                .blankLines(customSettings.BLANK_LINE_BETWEEN_SEQUENCES ? 1 : 0);
+                .after(BODY)
+                .blankLines(1);
     }
 
     @Override

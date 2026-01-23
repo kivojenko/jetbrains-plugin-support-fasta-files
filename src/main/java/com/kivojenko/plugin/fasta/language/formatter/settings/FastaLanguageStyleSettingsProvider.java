@@ -28,7 +28,7 @@ final class FastaLanguageStyleSettingsProvider extends LanguageCodeStyleSettings
     @Override
     public void customizeSettings(@NotNull CodeStyleSettingsCustomizable consumer, @NotNull SettingsType settingsType) {
         consumer.showCustomOption(FastaCodeStyleSettings.class, "SPACE_AFTER_START", "Space after '>'", null);
-        consumer.showCustomOption(FastaCodeStyleSettings.class, "BLANK_LINE_BETWEEN_SEQUENCES", "Blank line between sequences", null);
+//        consumer.showCustomOption(FastaCodeStyleSettings.class, "BLANK_LINE_BETWEEN_SEQUENCES", "Blank line between sequences", null);
     }
 
     @Override

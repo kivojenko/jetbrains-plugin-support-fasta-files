@@ -3,6 +3,7 @@ package com.kivojenko.plugin.fasta.model;
 import com.intellij.codeInsight.codeVision.ui.model.TextCodeVisionEntry;
 import com.intellij.psi.tree.IElementType;
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.biojava.nbio.core.sequence.template.AbstractSequence;
 
@@ -14,7 +15,8 @@ import java.util.List;
 public abstract class Sequence {
     protected final String sequence;
     protected final IElementType type;
-    protected AbstractSequence<?> bioJavaSequence;
+    @Getter(lazy = true)
+    private final AbstractSequence<?> bioJavaSequence = generateBioJavaSequence();
 
     protected long ambiguous = 0;
     protected double weightDaltons = 0;
@@ -28,12 +30,12 @@ public abstract class Sequence {
 
     public abstract String getCompoundLabel();
 
+    protected abstract AbstractSequence<?> generateBioJavaSequence();
 
     public ArrayList<TextCodeVisionEntry> getEntries() {
+        ArrayList<TextCodeVisionEntry> entries = new ArrayList<>();
         calculateProportions();
         calculateWeight();
-
-        ArrayList<TextCodeVisionEntry> entries = new ArrayList<>();
 
         var lengthLabel = sequence.length() + " " + getCompoundLabel();
         var lengthEntry = entry(".length", lengthLabel);

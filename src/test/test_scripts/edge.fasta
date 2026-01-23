@@ -1,0 +1,42 @@
+; Global comment before anything (legal FASTA)
+; Parser must ignore this
+
+>seq01_multiline_with_gaps description with spaces
+SSL--HPS-IP-QPRGHRAQ-------KAALVLLSACLVALLWGLEGPPDYTLKWLVLHLASQQMGLLIKGICSLAEELR
+HVHS-R-------YHGSYWAVRACLCS-------SM-RCGALLLLSCYF-YCSLPNM-------AGLP-FTWMLA--LLG
+LSQALNILLG
+
+>seq02_blank_lines_inside
+MSTAVQLNVGDLKAVPQNNRDLGAVKQL
+
+>seq03_tabs_and_spaces
+MSTAVQLNVGDLKAVPQNNRDLGAVKQL
+
+>seq04_mixed_case_softmask
+MSTAVqlnVGDLkavPQNNrdlgAVKQL
+
+; Comment between records
+>seq05_with_ambiguity_chars
+MSTAVXZNJQLNVGDLXXKAV
+
+>seq06_weird_line_wrapping
+MSTAVQLNVGDLKAVPQNNRDLGAVKQL
+
+>seq07_header_only_empty_sequence
+
+>seq08_back_to_back_headers
+
+>seq09_actual_sequence_after_empty
+AAA---CCC
+
+>seq10_utf8_header_β_Δ
+MSTAVQLNVGDLKAV
+
+>seq11_alignment_style
+ACDEFGHIKLMNPQRSTVWYACD---HIKLMNPQ--TVWYACDEFGHIKLMNPQRSTVWY
+
+>seq12_trailing_spaces_and_crlf
+MSTAVQLNVGDLKAVPQNNRDLGAVKQL
+
+>seq13_no_final_newline
+MSTAVQLNVGDLKAV
